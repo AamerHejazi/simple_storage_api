@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  expires_at: 2024-04-10 01:15:03
+  user: one
+
+two:
+  token: MyString
+  expires_at: 2024-04-10 01:15:03
+  user: two

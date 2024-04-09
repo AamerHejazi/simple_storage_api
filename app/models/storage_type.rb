@@ -1,0 +1,2 @@
+class StorageType < ApplicationRecord
+end
