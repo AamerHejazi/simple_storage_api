@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+StorageType.create(type_name: 'Database')
+StorageType.create(type_name: 'S3')
+StorageType.create(type_name: 'Local')
+StorageType.create(type_name: 'FTP')
