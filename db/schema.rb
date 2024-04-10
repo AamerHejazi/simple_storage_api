@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_09_221509) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_004903) do
   create_table "auth_tokens", force: :cascade do |t|
     t.string "token"
     t.datetime "expires_at"
@@ -41,7 +41,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_221509) do
   end
 
   create_table "storage_types", force: :cascade do |t|
-    t.integer "type_id"
     t.string "type_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
