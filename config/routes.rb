@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  
+  # Route for user registration
+  post '/register', to: 'users#create'
+
+  # Route for token generation (login)
+  post '/login', to: 'authentication#create'
 end
