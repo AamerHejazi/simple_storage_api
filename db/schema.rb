@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_004903) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_011841) do
   create_table "auth_tokens", force: :cascade do |t|
     t.string "token"
     t.datetime "expires_at"
@@ -36,8 +36,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_004903) do
     t.integer "storage_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
     t.index ["id"], name: "index_blobs_on_id", unique: true
     t.index ["storage_type_id"], name: "index_blobs_on_storage_type_id"
+    t.index ["user_id"], name: "index_blobs_on_user_id"
   end
 
   create_table "storage_types", force: :cascade do |t|
@@ -57,4 +59,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_004903) do
   add_foreign_key "auth_tokens", "users"
   add_foreign_key "blob_data", "blobs"
   add_foreign_key "blobs", "storage_types"
+  add_foreign_key "blobs", "users"
 end
