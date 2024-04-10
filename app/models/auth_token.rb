@@ -10,7 +10,7 @@ class AuthToken < ApplicationRecord
    private
  
    def generate_unique_secure_token
-     self.token = SecureRandom.hex(10) # Generates a random token
+     self.token = SecureRandom.hex(20) # Generates a random token
    end
  
    def set_expiration_time
