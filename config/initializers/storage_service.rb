@@ -1,0 +1,1 @@
+ENV['STORAGE_SERVICE'] = 'DB'

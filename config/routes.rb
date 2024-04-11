@@ -7,10 +7,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  
+
   # Route for user registration
   post '/register', to: 'users#create'
 
   # Route for token generation (login)
   post '/login', to: 'authentication#create'
+
+  # Routes for blob operations
+  # Define the POST request for blob creation
+  post '/v1/blobs', to: 'blobs#create'
+
+  # Define the GET request for retrieving a blob by ID
+  get '/v1/blobs/:id', to: 'blobs#show', as: 'blob'
 end

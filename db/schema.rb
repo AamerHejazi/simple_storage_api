@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_10_011841) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_11_030812) do
   create_table "auth_tokens", force: :cascade do |t|
     t.string "token"
     t.datetime "expires_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_011841) do
   end
 
   create_table "blob_data", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.string "blob_id"
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_011841) do
     t.integer "user_id", null: false
     t.index ["id"], name: "index_blobs_on_id", unique: true
     t.index ["storage_type_id"], name: "index_blobs_on_storage_type_id"
+    t.index ["user_id", "id"], name: "index_blobs_on_user_id_and_id", unique: true
     t.index ["user_id"], name: "index_blobs_on_user_id"
   end
 
