@@ -1,6 +1,5 @@
-# app/controllers/blobs_controller.rb
 class BlobsController < ApplicationController
-  before_action :authenticate_user
+    before_action :authenticate_user
 
   def create
     # Decode Base64 data and handle potential errors
@@ -16,10 +15,10 @@ class BlobsController < ApplicationController
       return render json: { error: 'Blob ID already exists for this user' }, status: :bad_request
     end
 
-    # Select the storage service based on configuration or user choice
+    # Instantiate the DBBlobStorageService directly
     storage_service = select_storage_service
 
-    # Store the blob using the selected service
+    # Store the blob using the service
     result = storage_service.store(params[:id], params[:data], size_in_bytes, current_user)
 
     if result.success?
@@ -30,15 +29,17 @@ class BlobsController < ApplicationController
   end
 
   def show
+    # Instantiate the DBBlobStorageService directly
     storage_service = select_storage_service
+
+    # Retrieve the blob using the service
     result = storage_service.retrieve(params[:id], current_user)
 
     if result.success?
       blob = result.blob
-      blob_data = result.data
       render json: {
         id: blob.id,
-        data: blob_data,
+        data: result.data,
         size: blob.size,
         created_at: blob.created_at
       }, status: :ok
@@ -52,13 +53,13 @@ class BlobsController < ApplicationController
   def select_storage_service
     case ENV['STORAGE_SERVICE']
     when 'DB'
-      DBBlobStorageService.new
+        BlobDbStorageService.new
     when 'S3'
-      S3BlobStorageService.new
+        BlobS3StorageService.new
     when 'Local'
-      LocalBlobStorageService.new
+        BlobLocalStorageService.new
     when 'FTP'
-      FTPBlobStorageService.new
+        BlobFtpStorageService.new
     else
       raise 'Storage service not selected'
     end
@@ -79,7 +80,6 @@ class BlobsController < ApplicationController
     end
   end
 
-  # Use this method to access the current user in your actions
   def current_user
     @current_user
   end

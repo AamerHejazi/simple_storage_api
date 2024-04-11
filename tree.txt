@@ -1,0 +1,190 @@
+Folder PATH listing for volume Data
+Volume serial number is 5040-A6BC
+D:.
+|   .dockerignore
+|   .gitattributes
+|   .gitignore
+|   .ruby-version
+|   2
+|   config.ru
+|   Dockerfile
+|   erd.pdf
+|   Gemfile
+|   Gemfile.lock
+|   Rakefile
+|   README.md
+|   tree.txt
+|   
++---.ruby-lsp
+|       .gitignore
+|       Gemfile
+|       Gemfile.lock
+|       last_updated
+|       main_lockfile_hash
+|       
++---.vscode
++---app
+|   +---channels
+|   |   \---application_cable
+|   |           channel.rb
+|   |           connection.rb
+|   |           
+|   +---controllers
+|   |   |   application_controller.rb
+|   |   |   authentication_controller.rb
+|   |   |   blobs_controller.rb
+|   |   |   users_controller.rb
+|   |   |   
+|   |   \---concerns
+|   |           .keep
+|   |           
+|   +---jobs
+|   |       application_job.rb
+|   |       
+|   +---mailers
+|   |       application_mailer.rb
+|   |       
+|   +---models
+|   |   |   application_record.rb
+|   |   |   auth_token.rb
+|   |   |   blob.rb
+|   |   |   blob_data.rb
+|   |   |   storage_type.rb
+|   |   |   user.rb
+|   |   |   
+|   |   \---concerns
+|   |           .keep
+|   |           
+|   +---services
+|   |       blob_db_storage_service.rb
+|   |       blob_ftp_storage_service.rb
+|   |       blob_local_storage_service.rb
+|   |       blob_s3_storage_service.rb
+|   |       blob_storage_interface.rb
+|   |       registration_interface.rb
+|   |       token_generation_service.rb
+|   |       user_registration_service.rb
+|   |       
+|   \---views
+|       \---layouts
+|               mailer.html.erb
+|               mailer.text.erb
+|               
++---bin
+|       bundle
+|       bundle.cmd
+|       docker-entrypoint
+|       rails
+|       rake
+|       setup
+|       
++---config
+|   |   application.rb
+|   |   boot.rb
+|   |   cable.yml
+|   |   credentials.yml.enc
+|   |   database.yml
+|   |   environment.rb
+|   |   master.key
+|   |   puma.rb
+|   |   routes.rb
+|   |   storage.yml
+|   |   
+|   +---environments
+|   |       development.rb
+|   |       production.rb
+|   |       test.rb
+|   |       
+|   +---initializers
+|   |       cors.rb
+|   |       filter_parameter_logging.rb
+|   |       inflections.rb
+|   |       storage_service.rb
+|   |       
+|   \---locales
+|           en.yml
+|           
++---db
+|   |   schema.rb
+|   |   seeds.rb
+|   |   
+|   \---migrate
+|           20240409214922_create_storage_types.rb
+|           20240409215016_create_blobs.rb
+|           20240409221438_create_blob_data.rb
+|           20240409221503_create_auth_tokens.rb
+|           20240409221509_create_users.rb
+|           20240410004903_remove_type_id_from_storage_types.rb
+|           20240410011841_add_user_id_to_blobs.rb
+|           20240410204603_add_unique_index_to_blobs.rb
+|           20240411030812_change_blob_id_type_to_string.rb
+|           
++---lib
+|   \---tasks
+|           .keep
+|           
++---log
+|       .keep
+|       development.log
+|       
++---public
+|       robots.txt
+|       
++---storage
+|       .keep
+|       development.sqlite3
+|       development.sqlite3-shm
+|       development.sqlite3-wal
+|       
++---test
+|   |   test_helper.rb
+|   |   
+|   +---channels
+|   |   \---application_cable
+|   |           connection_test.rb
+|   |           
+|   +---controllers
+|   |       .keep
+|   |       blobs_controller_test.rb
+|   |       
+|   +---fixtures
+|   |   |   auth_tokens.yml
+|   |   |   blobs.yml
+|   |   |   blob_data.yml
+|   |   |   storage_types.yml
+|   |   |   users.yml
+|   |   |   
+|   |   \---files
+|   |           .keep
+|   |           
+|   +---integration
+|   |       .keep
+|   |       
+|   +---mailers
+|   |       .keep
+|   |       
+|   \---models
+|           .keep
+|           auth_token_test.rb
+|           blob_datum_test.rb
+|           blob_test.rb
+|           storage_type_test.rb
+|           user_test.rb
+|           
++---tmp
+|   |   .keep
+|   |   local_secret.txt
+|   |   restart.txt
+|   |   
+|   +---cache
+|   +---pids
+|   |       .keep
+|   |       server.pid
+|   |       
+|   +---sockets
+|   \---storage
+|           .keep
+|           
+\---vendor
+        .keep
+        

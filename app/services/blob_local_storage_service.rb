@@ -1,4 +1,4 @@
-class LocalBlobStorageService
+class BlobLocalStorageService
     include BlobStorageInterface
   
     def store(blob_params, user)

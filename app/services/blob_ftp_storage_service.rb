@@ -1,4 +1,4 @@
-class FTPBlobStorageService
+class BlobFtpStorageService
     include BlobStorageInterface
   
     def store(blob_params, user)

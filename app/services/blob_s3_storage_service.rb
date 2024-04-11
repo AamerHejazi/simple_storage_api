@@ -1,4 +1,4 @@
-class S3BlobStorageService
+class BlobS3StorageService
     include BlobStorageInterface
   
     def store(blob_params, user)
