@@ -8,7 +8,6 @@ Before you begin, ensure you have met the following requirements as I have it:
 * You have installed Ruby version ruby 3.2.3 (2024-01-18 revision 52bb2ac0a6) [x64-mingw-ucrt]
 * You have installed Rails version 7.1.3.2
 * You have installed node v20.12.0
-* Any other dependencies required
 
 ## Getting Started
 
