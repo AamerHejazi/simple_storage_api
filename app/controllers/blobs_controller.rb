@@ -1,32 +1,37 @@
 class BlobsController < ApplicationController
     before_action :authenticate_user
 
-  def create
-    # Decode Base64 data and handle potential errors
-    begin
-      decoded_data = Base64.strict_decode64(params[:data])
-      size_in_bytes = decoded_data.bytesize
-    rescue ArgumentError
-      return render json: { error: 'Invalid Base64 data' }, status: :bad_request
+    def create
+      # Check if 'id' or 'data' parameters are provided
+      unless params[:id].present? && params[:data].present?
+        return render json: { error: 'Missing id or data parameters' }, status: :bad_request
+      end
+  
+      # Decode Base64 data and handle potential errors
+      begin
+        decoded_data = Base64.strict_decode64(params[:data])
+        size_in_bytes = decoded_data.bytesize
+      rescue ArgumentError
+        return render json: { error: 'Invalid Base64 data' }, status: :bad_request
+      end
+  
+      # Check if the blob ID is unique for the current user
+      if current_user.blobs.exists?(id: params[:id])
+        return render json: { error: 'Blob ID already exists for this user' }, status: :bad_request
+      end
+  
+      # Instantiate the storage service
+      storage_service = select_storage_service
+  
+      # Store the blob using the service
+      result = storage_service.store(params[:id], params[:data], size_in_bytes, current_user)
+  
+      if result.success?
+        render json: { id: result.blob.id, data: params[:data], size: size_in_bytes, created_at: result.blob.created_at }, status: :created
+      else
+        render json: { errors: result.errors }, status: :unprocessable_entity
+      end
     end
-
-    # Check if the blob ID is unique for the current user
-    if current_user.blobs.exists?(id: params[:id])
-      return render json: { error: 'Blob ID already exists for this user' }, status: :bad_request
-    end
-
-    # Instantiate the DBBlobStorageService directly
-    storage_service = select_storage_service
-
-    # Store the blob using the service
-    result = storage_service.store(params[:id], params[:data], size_in_bytes, current_user)
-
-    if result.success?
-      render json: { id: result.blob.id, data: params[:data], size: size_in_bytes, created_at: result.blob.created_at }, status: :created
-    else
-      render json: { errors: result.errors }, status: :unprocessable_entity
-    end
-  end
 
   def show
     # Instantiate the DBBlobStorageService directly
@@ -36,12 +41,11 @@ class BlobsController < ApplicationController
     result = storage_service.retrieve(params[:id], current_user)
 
     if result.success?
-      blob = result.blob
       render json: {
-        id: blob.id,
+        id: result.id,
         data: result.data,
-        size: blob.size,
-        created_at: blob.created_at
+        size: result.size,
+        created_at: result.created_at
       }, status: :ok
     else
       render json: { error: 'Blob not found' }, status: :not_found
