@@ -50,7 +50,7 @@ You will find it inside the root folder with the file name ```erd.pdf```
 - ```POST '/register'```
 to start using the APIs you need to create an account using this API with the following:
 
-you need to send the below fields:
+You need to send the below fields:
 ```
 {
     "email": "admin5@example.com",
