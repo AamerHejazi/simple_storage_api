@@ -58,15 +58,21 @@ you need to send the below fields:
     "password_confirmation": "admin5"
 }
 ```
-This API will return the ID and the email in the response with HTTP code ``` created 201 ```
+This API will return the ID and the email in the response with HTTP code ``` created 201 ``` with the following response
 
+```
+{
+    "id": "5",
+    "email": "admin5@example.com"
+}
+```
 
 ### Create a token 
 
 - ```POST '/login' ```
-to start using the APIs you need to create an account using this API with the following:
+to start using the APIs you need to create a token using this API with the following:
 
-you need to send the below fields:
+You need to send the below fields:
 ```
 {
     "email": "admin5@example.com",
