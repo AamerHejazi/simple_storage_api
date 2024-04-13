@@ -7,7 +7,6 @@ class BlobS3StorageService
 
   def store(file_name, encoded_data, size, user)
     # Decode the base64-encoded data
-    file_data = Base64.decode64(encoded_data)
 
     # Check if the file name already exists for the current user
     existing_blob = user.blobs.find_by(id: file_name)
@@ -15,6 +14,10 @@ class BlobS3StorageService
       # If the file name exists, return an error
       return OpenStruct.new(success?: false, error: 'File name already exists for this user')
     end
+
+    # remove '\n' if any exist in the encoded data
+    encoded_data = encoded_data.delete("\n")
+    file_data = Base64.decode64(encoded_data)
 
     # Detect MIME type using Marcel
     mime_type = Marcel::MimeType.for(StringIO.new(file_data))
@@ -25,7 +28,7 @@ class BlobS3StorageService
     # Construct the file name with the detected or default extension
     file_name_with_extension = "#{file_name}.#{extension || 'bin'}"
     bucket_name = ENV['MINIO_BUCKET']
-    puts(bucket_name)
+
     # Initialize the S3 client
     s3_client = Aws::S3::Client.new(
       endpoint: ENV['MINIO_URL'],
@@ -45,20 +48,23 @@ class BlobS3StorageService
       )
 
       # Save the file information in the database
-      blob = user.blobs.create!(
-        id: file_name,
-        file_name: file_name_with_extension,
-        path: "/#{bucket_name}/#{file_name_with_extension}",
-        size: file_data.bytesize,
-        storage_type_id: 2 # Assuming '2' is the ID for S3 storage
-      )
+    blob = user.blobs.create!(
+      id: file_name,
+      file_name: file_name_with_extension,
+      path: "/#{bucket_name}/#{file_name_with_extension}",
+      size: file_data.bytesize,
+      storage_type_id: 2 # Assuming '2' is the ID for S3 storage
+    )
 
-      OpenStruct.new(success?: true, blob: blob)
+    OpenStruct.new(success?: true, blob: blob)
+
     rescue Aws::S3::Errors::ServiceError => e
       # If the upload fails, return an error using OpenStruct
       OpenStruct.new(success?: false, error: e.message)
     end
+  
   end
+  
   def retrieve(blob_id, user)
     # Find the blob record associated with the given blob_id and user
     blob = user.blobs.find_by(id: blob_id)

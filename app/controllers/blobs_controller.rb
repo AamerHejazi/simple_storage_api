@@ -17,7 +17,7 @@ class BlobsController < ApplicationController
   
       # Check if the blob ID is unique for the current user
       if current_user.blobs.exists?(id: params[:id])
-        return render json: { error: 'Blob ID already exists for this user' }, status: :bad_request
+        return render json: { error: 'Blob ID already exists for this user please change the Id' }, status: :bad_request
       end
   
       # Instantiate the storage service
