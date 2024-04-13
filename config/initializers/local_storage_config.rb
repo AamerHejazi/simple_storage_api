@@ -1,0 +1,1 @@
+ENV['BASE_STORAGE_PATH'] = 'D:/local_storage'

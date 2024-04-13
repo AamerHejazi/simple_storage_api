@@ -5,6 +5,9 @@ require 'mime/types'
 class BlobS3StorageService
   include BlobStorageInterface
 
+  # '2' is the ID for s3 storage
+  STORAGE_TYPE_ID = 2
+
   def store(file_name, encoded_data, size, user)
     # Decode the base64-encoded data
 
@@ -53,7 +56,7 @@ class BlobS3StorageService
       file_name: file_name_with_extension,
       path: "/#{bucket_name}/#{file_name_with_extension}",
       size: file_data.bytesize,
-      storage_type_id: 2 # Assuming '2' is the ID for S3 storage
+      storage_type_id: STORAGE_TYPE_ID
     )
 
     OpenStruct.new(success?: true, blob: blob)
@@ -64,7 +67,7 @@ class BlobS3StorageService
     end
   
   end
-  
+
   def retrieve(blob_id, user)
     # Find the blob record associated with the given blob_id and user
     blob = user.blobs.find_by(id: blob_id)
