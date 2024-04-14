@@ -9,9 +9,7 @@ class BlobS3StorageServiceWithSdk
   STORAGE_TYPE_ID = 2
 
   def store(file_name, encoded_data, size, user)
-    # Decode the base64-encoded data
 
-    # Check if the file name already exists for the current user
     existing_blob = user.blobs.find_by(id: file_name)
     if existing_blob
       # If the file name exists, return an error
@@ -40,7 +38,7 @@ class BlobS3StorageServiceWithSdk
       endpoint: ENV['MINIO_URL'],
       access_key_id: ENV['MINIO_ACCESS_KEY'],
       secret_access_key: ENV['MINIO_SECRET_KEY'],
-      region: 'us-east-1',  # This can be a dummy region if not used by MinIO
+      region: 'us-east-1', 
       force_path_style: true
     )
 
@@ -82,7 +80,7 @@ class BlobS3StorageServiceWithSdk
       endpoint: ENV['MINIO_URL'],
       access_key_id: ENV['MINIO_ACCESS_KEY'],
       secret_access_key: ENV['MINIO_SECRET_KEY'],
-      region: 'us-east-1',  # This can be a dummy region if not used by MinIO
+      region: 'us-east-1',
       force_path_style: true
     )
 

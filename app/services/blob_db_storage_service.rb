@@ -32,7 +32,7 @@ class BlobDbStorageService
     ActiveRecord::Base.transaction do
       # Create the Blob record first
       blob = user.blobs.create!(id: file_name, file_name: file_name_with_extension, size: size, storage_type_id: STORAGE_TYPE_ID)
-      # Now you can safely create the associated BlobData record
+      
       BlobData.create!(blob: blob, data: data)
       # Return the blob if everything is successful
       OpenStruct.new(success?: true, blob: blob)
