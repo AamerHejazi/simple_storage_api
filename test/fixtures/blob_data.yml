@@ -1,9 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# test/fixtures/blob_data.yml
+
+# test/fixtures/blob_data.yml
+
 one:
-  blob: one
-  data: MyText
+  blob_id: 'one' 
+  data: 'VGhpcyBpcyBhIHRlc3QgYmFzZTY0IGVuY29kZWQgc3RyaW5n' # Base64 encoded string of "This is a test base64 encoded string"
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
 two:
-  blob: two
-  data: MyText
+  blob_id: 'two' 
+  data: 'QW5vdGhlciB0ZXN0IGJhc2U2NCBlbmNvZGVkIHN0cmluZw==' # Base64 encoded string of "Another test base64 encoded string"
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+

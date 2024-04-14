@@ -1,17 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# test/fixtures/blobs.yml
 
 one:
-  id: MyString
-  file_name: MyString
-  size: 1
-  path: MyString
-  created_at: 2024-04-10 00:50:16
-  storage_type: one
+  id: 'one'
+  file_name: 'test_file_one.txt'
+  size: 12345
+  storage_type_id: 1 
+  user_id: 1 # Replace with a valid user_id from your users fixtures or database
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
-two:
-  id: MyString
-  file_name: MyString
-  size: 1
-  path: MyString
-  created_at: 2024-04-10 00:50:16
-  storage_type: two
+one:
+  id: 'two'
+  file_name: 'test_file_two.txt'
+  size: 12345
+  storage_type_id: 1 
+  user_id: 1 # Replace with a valid user_id from your users fixtures or database
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

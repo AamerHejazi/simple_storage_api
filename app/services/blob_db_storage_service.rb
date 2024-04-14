@@ -15,8 +15,11 @@ class BlobDbStorageService
     end
 
     # Decode the base64-encoded data
-    file_data = Base64.decode64(data)
-
+    begin
+      file_data = Base64.strict_decode64(data)
+    rescue ArgumentError
+      return OpenStruct.new(success?: false, error: 'Invalid Base64 data')
+    end
     # Detect MIME type using Marcel
     mime_type = Marcel::MimeType.for(StringIO.new(file_data))
 

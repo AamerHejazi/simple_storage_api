@@ -19,9 +19,12 @@ class BlobS3StorageService
     end
 
     # remove '\n' if any exist in the encoded data
-    encoded_data = encoded_data.delete("\n")
-    file_data = Base64.decode64(encoded_data)
-
+    begin
+      encoded_data = encoded_data.delete("\n")
+      file_data = Base64.decode64(encoded_data)
+    rescue ArgumentError
+      return OpenStruct.new(success?: false, error: 'Invalid Base64 data')
+    end
     # Detect MIME type using Marcel
     mime_type = Marcel::MimeType.for(StringIO.new(file_data))
 

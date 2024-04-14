@@ -5,7 +5,6 @@ D:.
 |   .gitattributes
 |   .gitignore
 |   .ruby-version
-|   2
 |   config.ru
 |   Dockerfile
 |   erd.pdf
