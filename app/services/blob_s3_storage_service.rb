@@ -71,6 +71,9 @@ class BlobS3StorageService
 
   def retrieve(blob_id, user)
     # Step 1: Find the blob in the database
+    puts "Before SECRET_KEY"
+    puts "ACCESS_KEY: #{ACCESS_KEY}"
+    puts "SECRET_KEY: #{SECRET_KEY}"
   blob = user.blobs.find_by(id: blob_id)
 
   return OpenStruct.new(success?: false, error: 'Blob not found') unless blob
