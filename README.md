@@ -51,7 +51,7 @@ You can find it inside the root folder with the file name ```erd.pdf```
 to start using the APIs you need to create an account using this API with the following:
 
 You need to send the below fields:
-```
+```bash
 {
     "email": "admin5@example.com",
     "password": "admin5",
@@ -60,7 +60,7 @@ You need to send the below fields:
 ```
 This API will return the ID and the email in the response with HTTP code ``` created 201 ``` with the following response
 
-```
+```bash
 {
     "id": "5",
     "email": "admin5@example.com"
@@ -73,7 +73,7 @@ This API will return the ID and the email in the response with HTTP code ``` cre
 to start using the APIs you need to create a token using this API with the following:
 
 You need to send the below fields:
-```
+```bash
 {
     "email": "admin5@example.com",
     "password": "admin5"
@@ -82,7 +82,7 @@ You need to send the below fields:
 This API will return the ```id``` and the ```email``` in the response with HTTP code ``` OK 200 ```
 with the following response
 
-```
+```bash
 {
     "bearer_token": "92ba8fabbc23060e65ed3ad9089e02242be43643",
     "expires_at": "2024-05-11T05:02:56.214Z"
@@ -93,7 +93,7 @@ Now you can use the token in the headers ```Authorization``` to call other APIs 
 ### Upload blob
 - ```POST '/v1/blobs'```
 
-```
+```bash
 {
     "id": "blob_id",
     "data": "base64 data"
@@ -101,7 +101,7 @@ Now you can use the token in the headers ```Authorization``` to call other APIs 
 ```
 This API will return the ```id```,```data```,```size```, and ```created_at``` in the response with HTTP code ```Created 201``` with the following response
 
-```
+```bash
 {
     "id": "blob_id",
     "data": "base64 data",
@@ -116,7 +116,7 @@ This API will return the ```id```,```data```,```size```, and ```created_at``` in
 
 This API will return the ```id```,```data```,```size```, and ```created_at``` in the response with HTTP code ```OK 200``` with the following response
 
-```
+```bash
 {
     "id": "blob_id",
     "data": "base64 data",
@@ -131,3 +131,14 @@ To run all test cases for the application use the below command
 ```bash
 rspec spec
 ```
+
+## Notes
+* Before Running the Application you need to create a ```.env``` file inside the ```root``` repository and configure the following key and secret related to the S3 server:
+```bash
+MINIO_ACCESS_KEY=YOURKEY
+MINIO_SECRET_KEY=YOURSECRET
+```
+* By default the app will store the data inside S3 and to change it for Local storage on your machine or DB change the value inside this file ```config/initializers/select_storage_service.rb```
+Available values are ```DB```, ```Local```, ```S3```, ```FTP``` 
+
+* "```FTP Not Implemented Yet```"
