@@ -42,7 +42,7 @@ rails server
 now the base path of the server is ```http://localhost:3000```
 
 ### ERD Diagram
-You will find it inside the root folder with the file name ```erd.pdf```
+You can find it inside the root folder with the file name ```erd.pdf```
 
 
 ### Create an account and Registration
@@ -123,4 +123,11 @@ This API will return the ```id```,```data```,```size```, and ```created_at``` in
     "size": 300,
     "created_at": "2024-04-13T15:19:52.621Z"
 }
+```
+
+### Run test cases
+
+To run all test cases for the application use the below command
+```bash
+rspec spec
 ```
