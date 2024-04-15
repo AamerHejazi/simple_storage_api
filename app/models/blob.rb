@@ -5,5 +5,6 @@ class Blob < ApplicationRecord
   has_one :blob_data, dependent: :destroy
   belongs_to :user
 
-  validates :id, uniqueness: { scope: :user_id }
+  validates :id, presence: true, uniqueness: { scope: :user_id },
+                 format: { without: /\.[a-zA-Z0-9]+\z/, message: "should not end with a file extension like .pdf, .jpg, etc." }
 end
