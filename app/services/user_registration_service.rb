@@ -1,8 +1,8 @@
 class UserRegistrationService
   include RegistrationInterface
 
-  def register(email, password, password_confirmation)
-    user = User.new(email: email, password: password, password_confirmation: password_confirmation)
+  def register(user_params)
+    user = User.new(user_params)
     
     if user.save
       OpenStruct.new(success?: true, user: user)

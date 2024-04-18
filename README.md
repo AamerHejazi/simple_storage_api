@@ -48,7 +48,7 @@ You can find it inside the root folder with the file name ```erd.pdf```
 ### Create an account and Registration
 
 - ```POST '/register'```
-to start using the APIs you need to create an account using this API with the following:
+Before you start using the APIs you need to create an account using this API with the following:
 
 You need to send the below fields:
 ```bash
